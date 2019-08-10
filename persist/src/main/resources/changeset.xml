@@ -1,0 +1,43 @@
+<databaseChangeLog>
+  <changeset id="07.28.2019-addMember" author="liam.moynihan" >
+    <createTable tableName="member" >
+      <column name="id" type="varchar(36)" />
+      <column name="email" type="varchar(36)" />
+      <column name="first_name" type="varchar(36)" />
+      <column name="last_name" type="varchar(36)" />
+      <column name="graduation_year" type="int" />
+      <column name="major" type="varchar(36)" />
+      <column name="privilege_level" type="int" />
+    </createTable>
+  </changeset>
+
+  <changeset id="07.28.2019-addMeeting" author="liam.moynihan" >
+    <createTable tableName="meeting" >
+      <column name="id" type="varchar(36)" />
+      <column name="name" type="varchar(36)" />
+      <column name="date" type="datetime" />
+      <column name="open" type="tinyint(1)" />
+    </createTable>
+  </changeset>
+
+  <changeset id="07.28.2019-addMemberAttendedMeeting" author="liam.moynihan" >
+    <createTable tableName="member_attended_meeting" >
+      <column name="id" type="varchar(36)" />
+      <column name="member_id" type="varchar(36)" />
+      <column name="meeting_id" type="datetime" />
+    </createTable>
+  </changeset>
+
+  <changeset id="07.28.2019-addForeignKeys" author="liam.moynihan">
+    <addForeignKeyConstrain  baseColumnNames="member_id"
+                             baseTableName="member_attended_meeting"
+                             constraintName="fk_attended_member"
+                             referencedColumnNames="id"
+                             referencedTableName="member" />
+    <addForeignKeyConstrain  baseColumnNames="meeting_id"
+                             baseTableName="member_attended_meeting"
+                             constraintName="fk_attended_meeting"
+                             referencedColumnNames="id"
+                             referencedTableName="meeting" />
+  </changeset>
+</databaseChangeLog>
