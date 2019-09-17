@@ -9,14 +9,14 @@ CREATE TABLE member (
 );
 
 CREATE TABLE meeting (
-  id VARCHAR(36),
+  id VARCHAR(36) NOT NULL PRIMARY KEY,
   name VARCHAR(36),
   date DATETIME,
   open TINYINT(1)
 );
 
 CREATE TABLE member_attended_meeting (
-  id VARCHAR(36),
+  id VARCHAR(36) NOT NULL PRIMARY KEY,
   member_id VARCHAR(36),
   meeting_id VARCHAR(36),
 
