@@ -3,26 +3,15 @@ package com.codeforcommunity;
 import com.codeforcommunity.api.IProcessor;
 import com.codeforcommunity.processor.ProcessorImpl;
 import com.codeforcommunity.rest.ApiRouter;
-import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpServer;
-import io.vertx.core.http.HttpServerResponse;
-import io.vertx.ext.web.Router;
 import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 
 public class ServiceMain {
+  private DSLContext db;
+
   public static void main(String[] args) {
-    Vertx vertx = Vertx.vertx();
-    HttpServer server = vertx.createHttpServer();
-
-    Router router = Router.router(vertx);
-
-    router.route().handler(ctx -> {
-      HttpServerResponse response = ctx.response();
-      response.putHeader("content-type", "text/plain");
-      response.end("What it do babi");
-    });
-
-    server.requestHandler(router).listen(8081);
+    ServiceMain serviceMain = new ServiceMain();
+    serviceMain.initialize();
   }
 
   public void initialize() {
@@ -30,13 +19,20 @@ public class ServiceMain {
     initializeServer();
   }
 
-  private DSLContext connectDb() {
-    //TODO: Do stuff
-    return null;
+  private void connectDb() {
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    DSLContext db = DSL.using("jdbc:mysql://localhost:3306/checkin?useSSL=false",
+        "root", "apple");
+    this.db = db;
   }
 
   private void initializeServer() {
-    IProcessor processor = new ProcessorImpl(connectDb());
+    IProcessor processor = new ProcessorImpl(this.db);
     ApiRouter router = new ApiRouter(processor);
 
     startApiServer(router);

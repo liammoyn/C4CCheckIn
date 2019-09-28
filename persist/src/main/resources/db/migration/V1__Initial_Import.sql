@@ -1,4 +1,4 @@
-CREATE TABLE member (
+CREATE TABLE IF NOT EXISTS member (
   id VARCHAR(36) NOT NULL PRIMARY KEY,
   email VARCHAR(36),
   first_name VARCHAR(36),
@@ -8,14 +8,14 @@ CREATE TABLE member (
   privilege_level INT
 );
 
-CREATE TABLE meeting (
+CREATE TABLE IF NOT EXISTS meeting (
   id VARCHAR(36) NOT NULL PRIMARY KEY,
   name VARCHAR(36),
   date DATETIME,
   open TINYINT(1)
 );
 
-CREATE TABLE member_attended_meeting (
+CREATE TABLE IF NOT EXISTS member_attended_meeting (
   id VARCHAR(36) NOT NULL PRIMARY KEY,
   member_id VARCHAR(36),
   meeting_id VARCHAR(36),

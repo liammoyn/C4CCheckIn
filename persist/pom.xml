@@ -26,7 +26,6 @@
         <groupId>org.jooq</groupId>
         <artifactId>jooq-codegen-maven</artifactId>
         <version>3.12.0</version>
-
         <executions>
           <execution>
             <id>jooq-codegen</id>
@@ -36,7 +35,6 @@
             </goals>
           </execution>
         </executions>
-
         <configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.12.0.xsd">
           <generator>
             <generate>
@@ -113,19 +111,13 @@
 <!--          </locations>-->
           <encoding>ISO-8859-1</encoding>
           <cleanOnValidationError>true</cleanOnValidationError>
-          <!--<placeholders>-->
-            <!--<email_type.primary>Primary</email_type.primary>-->
-            <!--<email_type.work>Work</email_type.work>-->
-            <!--<phone_type.home>Home</phone_type.home>-->
-          <!--</placeholders>-->
         </configuration>
         <executions>
           <execution>
             <id>flyway database migration</id>
             <phase>pre-integration-test</phase>
             <goals>
-              <goal>clean</goal>
-              <goal>baseline</goal>
+<!--              <goal>clean</goal>-->
               <goal>migrate</goal>
               <goal>info</goal>
             </goals>
