@@ -19,6 +19,9 @@ public class ApiRouter {
     this.processor = processor;
   }
 
+  /**
+   * Initialize a router and register all route handlers on it.
+   */
   public Router initializeRouter(Vertx vertx) {
     Router router = Router.router(vertx);
 
@@ -28,14 +31,17 @@ public class ApiRouter {
     return router;
   }
 
+  /**
+   * Add a handler for getting all members.
+   */
   private void handleGetMemberRoute(RoutingContext ctx) {
     HttpServerResponse response = ctx.response();
     response.putHeader("content-type", "application/json");
-    List<MemberReturn> members = processor.getAttendees();
+    List<MemberReturn> members = processor.getAllMembers();
 
     String memberJson = null;
     try {
-      memberJson = JacksonMapper.mapper.writeValueAsString(members);
+      memberJson = JacksonMapper.getMapper().writeValueAsString(members);
     } catch (JsonProcessingException e) {
       e.printStackTrace();
     }

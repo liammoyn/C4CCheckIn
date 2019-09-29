@@ -16,4 +16,9 @@ public interface IProcessor {
   Result closeMeeting(String meetingId);
 
   List<MemberReturn> getAttendees();
+
+  /**
+   * Get all the members first and last names.
+   */
+  List<MemberReturn> getAllMembers();
 }

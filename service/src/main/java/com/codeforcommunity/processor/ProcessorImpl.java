@@ -41,6 +41,11 @@ public class ProcessorImpl implements IProcessor {
 
   @Override
   public List<MemberReturn> getAttendees() {
+    return null;
+  }
+
+  @Override
+  public List<MemberReturn> getAllMembers() {
     List<Member> members = db.selectFrom(Tables.MEMBER).fetchInto(Member.class);
     return members.stream()
         .map(member -> new MemberReturn(member.getFirstName(), member.getLastName()))
