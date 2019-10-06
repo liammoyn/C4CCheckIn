@@ -28,13 +28,13 @@ public class ServiceMain {
   private void connectDb() {
     //This block ensures that the MySQL driver is loaded in the classpath
     try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
+      Class.forName("org.postgresql.Driver");
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
 
     //TODO: These arguments should be read out of a properties file
-    DSLContext db = DSL.using("jdbc:mysql://localhost:3306/checkin?useSSL=false",
+    DSLContext db = DSL.using("jdbc:postgresql://localhost:5432/checkin",
         "root", "apple");
     this.db = db;
   }

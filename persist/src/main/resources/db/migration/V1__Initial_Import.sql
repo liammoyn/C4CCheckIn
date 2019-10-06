@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS member (
 CREATE TABLE IF NOT EXISTS meeting (
   id VARCHAR(36) NOT NULL PRIMARY KEY,
   name VARCHAR(36),
-  date DATETIME,
-  open TINYINT(1)
+  date TIMESTAMP,
+  open BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS member_attended_meeting (

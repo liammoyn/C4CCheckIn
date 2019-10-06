@@ -13,9 +13,9 @@
 
   <properties>
     <flyway.version>6.0.3</flyway.version>
-    <database.driver>com.mysql.jdbc.Driver</database.driver>
-    <database.url>jdbc:mysql://localhost:3306/checkin?autoreconnect=true&amp;useSSL=false</database.url>
-    <database.username>root</database.username>
+    <database.driver>org.postgresql.Driver</database.driver>
+    <database.url>jdbc:postgresql://localhost:5432/checkin?autoreconnect=true</database.url>
+    <database.username>liam</database.username>
     <database.password>apple</database.password>
   </properties>
 
@@ -53,7 +53,7 @@
                      - ? matches a single character in a directory / file name -->
                 <property>
                   <key>scripts</key>
-                  <value>{!project.basedir}/src/main/resources/db/migration/</value>
+                  <value>**/main/resources/db/migration/*.sql</value>
                 </property>
 
                 <!-- The sort order of the scripts within a directory, where:
@@ -139,9 +139,8 @@
     </dependency>
 
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <scope>runtime</scope>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
     </dependency>
   </dependencies>
 
